@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fair Play or Full Access? – Riot Vanguard Policy Primer</title>
+    <meta name="description"
+        content="Policy primer on Riot Vanguard’s kernel-level anti-cheat, consent, and privacy." />
+    <style>
+        :root {
+            --bg: #0b0f14;
+            --fg: #e6edf3;
+            --muted: #9fb0c0;
+            --accent: #7fd1ff;
+            --accent2: #9ef0c7;
+            --danger: #ff8b8b;
+            --card: #111827;
+            --focus: #ffd166;
+            --max: 960px;
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        a {
+            color: var(--accent)
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(11, 15, 20, .9);
+            backdrop-filter: saturate(130%) blur(8px);
+            border-bottom: 1px solid #1f2937
+        }
+
+        .wrap {
+            max-width: var(--max);
+            margin-inline: auto;
+            padding: 1rem
+        }
+
+        /* align nav left and badge right */
+        header .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: .75rem;
+            flex-wrap: wrap;
+        }
+
+        nav {
+            display: flex;
+            gap: .75rem;
+            flex-wrap: wrap;
+            align-items: center
+        }
+
+        nav a {
+            padding: .4rem .7rem;
+            border-radius: 999px;
+            background: #0f172a;
+            color: var(--fg);
+            text-decoration: none;
+            font-size: .92rem;
+            border: 1px solid #1f2937
+        }
+
+        nav a[aria-current="true"] {
+            outline: 2px solid var(--focus);
+            outline-offset: 2px
+        }
+
+        /* top-right badge */
+        .id-badge {
+            margin-left: 20rem;
+            font-size: .9rem;
+            background: #0f172a;
+            border: 1px solid #ffffff;
+            color: var(--muted);
+            padding: .4rem .7rem;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+
+        .id-badge strong {
+            color: var(--fg);
+        }
+
+        @media (max-width:600px) {
+            nav {
+                order: 1;
+                flex: 1 1 100%;
+            }
+
+            .id-badge {
+                order: 2;
+                margin-left: 0;
+            }
+        }
+
+        footer {
+            border-top: 1px solid #1f2937;
+            margin-top: 2rem;
+            padding-top: 1rem
+        }
+
+        main section {
+            padding-block: 1rem
+        }
+
+        main section+section {
+            border-top: 1px solid #121a25;
+            margin-top: 1.25rem;
+            padding-top: 1.75rem
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 2rem;
+            align-items: center;
+            justify-items: center;
+            padding: 2rem 1rem;
+            background:
+                radial-gradient(900px 420px at -10% -10%, rgba(127, 209, 255, .08), transparent 60%),
+                radial-gradient(800px 380px at 110% 0%, rgba(158, 240, 199, .06), transparent 60%);
+            border: 1px solid #132235;
+            border-radius: 18px;
+        }
+
+        .hero>div {
+            width: 100%;
+            max-width: 36rem;
+            margin: 0 auto;
+        }
+
+        .hero figure {
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+        }
+
+        @media (max-width:900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                justify-items: start;
+            }
+
+            .hero figure {
+                margin-top: 1rem;
+            }
+        }
+
+        h1 {
+            font-size: clamp(1.9rem, 4vw, 2.8rem);
+            line-height: 1.15;
+            margin: .2rem 0 0.6rem;
+            letter-spacing: .2px;
+        }
+
+        h1::after {
+            content: "";
+            display: block;
+            height: 6px;
+            width: 42%;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            border-radius: 6px;
+            margin-top: .55rem;
+        }
+
+        h2 {
+            font-size: clamp(1.35rem, 2.2vw, 1.6rem);
+            margin: 2rem 0 .8rem;
+            line-height: 1.25;
+            position: relative;
+            padding-left: .8rem;
+        }
+
+        h2::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: .25rem;
+            bottom: .25rem;
+            width: 4px;
+            background: linear-gradient(var(--accent), var(--accent2));
+            border-radius: 6px;
+            opacity: .9;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            margin: 1rem 0 .4rem;
+            color: #d5e2ee
+        }
+
+        p,
+        li {
+            color: var(--fg)
+        }
+
+        .muted {
+            color: var(--muted)
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid #1f2937;
+            border-radius: 16px;
+            padding: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+        }
+
+        figure {
+            margin: 0
+        }
+
+        figcaption {
+            margin-top: .4rem;
+            font-size: .9rem;
+            color: var(--muted)
+        }
+
+        #action ul {
+            list-style: none;
+            padding-left: 0;
+            margin: .6rem 0 0
+        }
+
+        #action li {
+            position: relative;
+            padding-left: 1.9rem;
+            margin: .6rem 0;
+            background: linear-gradient(90deg, rgba(158, 240, 199, .05), transparent 50%);
+            border-radius: 10px;
+            padding-block: .35rem;
+        }
+
+        #action li::before {
+            content: "✓";
+            position: absolute;
+            left: .35rem;
+            top: .25rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            line-height: 1.25rem;
+            text-align: center;
+            border-radius: 50%;
+            background: rgba(158, 240, 199, .15);
+            color: var(--accent2);
+            border: 1px solid rgba(158, 240, 199, .35);
+            font-weight: 700;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            background: #0f172a;
+            border: 1px solid #1f2937;
+            border-radius: 999px;
+            padding: .25rem .6rem;
+            font-size: .85rem
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid #1f2937
+        }
+
+        .wrap p,
+        .wrap li {
+            max-width: 72ch
+        }
+
+        main>section:not(#intro) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: left;
+        }
+
+        main>section:not(#intro)>* {
+            width: 100%;
+            max-width: 700px;
+        }
+
+        main>section:not(#intro) img {
+            display: block;
+            margin: 1.5rem auto;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="wrap" role="navigation" aria-label="Primary">
+            <nav>
+                <a href="#intro">Intro</a>
+                <a href="#what">What is Vanguard</a>
+                <a href="#consent">What you accept</a>
+                <a href="#why">Why it matters</a>
+                <a href="#action">Call to action</a>
+                <a href="about.html">About</a>
+                <a href="sources.html">Sources</a>
+            </nav>
+            <div class="id-badge" aria-label="Author and student number">
+                <strong>Chris Daniells -</strong> 22964492
+            </div>
+        </div>
+    </header>
+
+    <main id="content" class="wrap" tabindex="-1">
+
+        <!-- INTRO -->
+        <section id="intro" style="scroll-margin-top:6rem">
+            <div class="hero">
+                <div>
+                    <h1>Fair Play or Full Access?</h1>
+                    <p class="muted">Every League of Legends player has clicked “Accept” to install <strong>Riot
+                            Vanguard</strong>, a security tool that digs deep into your computer. But few realise just
+                        how deep that
+                        goes.</p>
+                    <p>As players, we love fair competition. No one wants to lose to a cheater, its straight up not enjoyable. But the anti cheat
+                        software that
+                        promises fairness can also become one of the most intrusive programs on your PC. Vanguard runs
+                        below your
+                        antivirus, with more power than most operating system tools. Once you agree, Riot gains
+                        permission to scan
+                        and evaluate what’s happening inside your machine constantly.</p>
+                    <p>Law professor Lawrence Lessig once said that “code is law.” What he meant is that technology’s
+                        design can
+                        decide what we can or can’t do. Riot Vanguard works exactly like that. It enforces rules not by
+                        trust or
+                        discussion, but through architecture either you accept the terms, or you don’t play at all.</p>
+                </div>
+                <figure class="card">
+                    <img src="RiotVanguardLogo.png" alt="Official Riot Vanguard logo from Wikipedia">
+                    <figcaption class="muted">Image source: Wikipedia – Riot Vanguard.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- WHAT IS VANGUARD -->
+        <section id="what">
+            <h2>What is Riot Vanguard?</h2>
+            <p><strong>Think of Vanguard as a referee that never leaves your PC.</strong> It’s Riot’s anti cheat
+                software that
+                launches every time you turn on your computer. It monitors what’s running, what hardware is attached,
+                and what
+                programs might be interfering with the game.</p>
+
+            <h3>Example</h3>
+            <p>Players on Reddit have shared stories of Vanguard blocking harmless software like fan controllers or
+                keyboard
+                drivers, forcing them to uninstall other tools just to play. It’s doing its job but a little too well.
+            </p>
+
+            <h3>So what?</h3>
+            <p>According to Riot, this deep access keeps the game fair. Cheats often hide at this same low level, so the
+                anti
+                cheat must meet them there. But it also means a company has the same power over your device that your
+                operating
+                system does. Lessig called this an “architecture of control”: behaviour is shaped not by policy but by
+                what the
+                software allows.</p>
+
+            <p>The Mozilla Foundation’s <em>Privacy Not Included</em> report (2023) calls this kind of design “quiet
+                surveillance.” It’s not visible, but it’s always on and it’s becoming normalised as the price of
+                convenience or
+                safety.</p>
+        </section>
+
+        <!-- CONSENT -->
+        <section id="consent">
+            <h2>What you accept when you click “I Agree”</h2>
+            <p>Most of us scroll past Terms of Service pages, but Vanguard’s fine print deserves attention. Installing
+                it
+                means giving permission for <strong>persistent monitoring</strong> of your system, even when the game is
+                closed.
+                Riot’s privacy notice allows collection of data like your running applications, hardware setup, and even
+                behaviour patterns that suggest cheating.</p>
+
+            <h3>Example</h3>
+            <p>You might not realise that Vanguard loads before you even log in to Windows. It starts with your PC and
+                doesn’t
+                fully stop until you uninstall both the driver and the game. There’s no partial opt out.</p>
+
+            <h3>So what?</h3>
+            <p>This IS NOT real consent. It’s a condition. An ultimatum if you will. If you want to play, you have to
+                agree.
+                Privacy researcher Tjerk Dobber (2023) calls this “algorithmic efficiency” when systems take away choice
+                under
+                the excuse of protecting users. Stardust, Gillett and Albury (2023) describe something similar on dating
+                apps:
+                surveillance presented as safety. Vanguard applies that same logic to gaming.</p>
+
+            <figure class="card">
+                <img src="CheaterDetected.png"
+                    alt="Screenshot of the 'Cheater Detected' message displayed by Riot Vanguard" />
+                <figcaption class="muted">Image source: IGN – Riot assures players that new anti cheat software is not
+                    bricking
+                    PCs.</figcaption>
+            </figure>
+        </section>
+
+        <!-- WHY IT MATTERS -->
+        <section id="why">
+            <h2>Why it matters</h2>
+            <p>Privacy isn’t about hiding something bad. It’s about keeping control of your digital life. When kernel
+                level
+                surveillance becomes normal, we stop noticing how much power we’ve given away.</p>
+
+            <h3>So what?</h3>
+            <p>As media scholar János Bayer (2020) warns, hidden systems harm both those who see and those who don’t. In
+                League of Legends, you don’t see what Vanguard records, how it decides someone’s cheating, or where that
+                data
+                goes. The system acts as judge, jury and enforcer all in code you can’t inspect.</p>
+
+            <p>Lessig’s “code is law” idea helps explain why that matters. Instead of governments setting limits,
+                private
+                architecture quietly defines them. Riot decides what’s fair; users just comply. This shifts
+                accountability away
+                from public oversight and toward opaque algorithms.</p>
+
+            <p>And it’s not only games. Schools and workplaces use similar monitoring tools to track students and
+                employees.
+                When we accept this in games, we make it easier to accept elsewhere. As Stardust and colleagues note,
+                surveillance sold as safety can easily turn into surveillance as control.</p>
+        </section>
+
+        <!-- CALL TO ACTION -->
+        <section id="action">
+            <h2>What you can do</h2>
+            <p>Fair play shouldn’t mean giving up your privacy. Here’s how you can push back:</p>
+            <ul>
+                <li><strong>Read the fine print:</strong> take five minutes to open Riot’s Privacy Notice and see
+                    exactly what’s
+                    being collected.</li>
+                <li><strong>Limit exposure:</strong> avoid installing kernel level software on your main work or banking
+                    computer.</li>
+                <li><strong>Ask for transparency:</strong> request that Riot publish reports showing what data Vanguard
+                    stores
+                    and for how long.</li>
+                <li><strong>Support stronger regulation:</strong> back efforts to treat kernel anti cheat like other
+                    high risk
+                    technologies, such as facial recognition.</li>
+                <li><strong>Do a data detox:</strong> Mozilla’s Data Detox Kit suggests reviewing which apps have the
+                    deepest
+                    access to your system and cutting that list down.</li>
+            </ul>
+            <p>As Lessig so aptly put it, we can either let these architectures define our freedoms or demand technologies that
+                respect user choice. The next time you click “Accept,” think about what you’re really agreeing to.</p>
+            <p><strong>Fair play should NEVER require full access.</strong></p>
+        </section>
+    </main>
+
+    <footer class="wrap" role="contentinfo">
+        <p class="muted">© 2025 Chris Daniells |
+            <a href="about.html">About</a> |
+            <a href="sources.html">Sources</a> |
+            <a href="about.html#license">Licence</a>
+        </p>
+    </footer>
+</body>
+
+</html>

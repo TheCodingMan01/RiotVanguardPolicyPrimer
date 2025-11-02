@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sources – Riot Vanguard Policy Primer</title>
+    <meta name="description" content="Source list and further reading for the Policy Primer." />
+    <style>
+        :root {
+            --bg: #0b0f14;
+            --fg: #e6edf3;
+            --muted: #9fb0c0;
+            --accent: #7fd1ff;
+            --accent2: #9ef0c7;
+            --danger: #ff8b8b;
+            --card: #111827;
+            --focus: #ffd166;
+            --max: 960px;
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--accent)
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(11, 15, 20, .9);
+            backdrop-filter: saturate(130%) blur(8px);
+            border-bottom: 1px solid #1f2937;
+        }
+
+        .wrap {
+            max-width: var(--max);
+            margin-inline: auto;
+            padding: 1rem;
+        }
+
+        /* align nav left and badge right */
+        header .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: .75rem;
+            flex-wrap: wrap;
+        }
+
+        nav {
+            display: flex;
+            gap: .75rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        nav a {
+            padding: .4rem .7rem;
+            border-radius: 999px;
+            background: #0f172a;
+            color: var(--fg);
+            text-decoration: none;
+            font-size: .92rem;
+            border: 1px solid #1f2937;
+        }
+
+        nav a[aria-current="true"] {
+            outline: 2px solid var(--focus);
+            outline-offset: 2px;
+        }
+
+         /* author badge */
+         .id-badge {
+            margin-left: 20rem;
+            font-size: .9rem;
+            background: #0f172a;
+            border: 1px solid #ffffff;
+            color: var(--muted);
+            padding: .4rem .7rem;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+
+        .id-badge strong {
+            color: var(--fg);
+        }
+
+        @media (max-width:600px) {
+            nav {
+                order: 1;
+                flex: 1 1 100%;
+            }
+
+            .id-badge {
+                order: 2;
+                margin-left: 0;
+            }
+        }
+
+        h1 {
+            font-size: clamp(1.6rem, 3vw, 2.25rem);
+            line-height: 1.2;
+            margin: .2rem 0;
+        }
+
+        h2 {
+            font-size: 1.15rem;
+            margin: 1.6rem 0 .4rem;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        footer {
+            border-top: 1px solid #1f2937;
+            margin-top: 2rem;
+        }
+
+        /* layout */
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        main>* {
+            width: 100%;
+            max-width: 720px;
+        }
+
+        /* cards */
+        .card {
+            background: var(--card);
+            border: 1px solid #1f2937;
+            border-radius: 14px;
+            padding: 1rem;
+        }
+
+        .callout {
+            border-left: 4px solid var(--accent);
+        }
+
+        ul {
+            padding-left: 1.2rem;
+        }
+
+        li+li {
+            margin-top: .4rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="wrap" role="navigation" aria-label="Primary">
+            <nav>
+                <a href="index.html#intro">Intro</a>
+                <a href="index.html#what">What is Vanguard</a>
+                <a href="index.html#consent">What you accept</a>
+                <a href="index.html#why">Why it matters</a>
+                <a href="index.html#action">Call to action</a>
+                <a href="about.html">About</a>
+                <a href="sources.html" aria-current="true">Sources</a>
+            </nav>
+            <div class="id-badge" aria-label="Author and student number">
+                <strong>Chris Daniells -</strong> 22964492
+            </div>
+        </div>
+    </header>
+
+    <main class="wrap" tabindex="-1">
+        <h1>Want to dig deeper?</h1>
+        <p class="muted">If you want more on kernel level anti-cheat, consent, and privacy in games, start here. I play
+            too, so this is the mix I found useful: quick reads, official info, news, and broader research that informed the main primer.</p>
+
+        <section class="card callout">
+            <h2>IMPORTANT!! Quick tips for players</h2>
+            <ul>
+                <li><strong>Check three things first:</strong> what data is collected, how long it’s stored, and how you
+                    can appeal.</li>
+                <li><strong>Use the right PC:</strong> play on a device you’re comfortable giving kernel-level access
+                    to.</li>
+                <li><strong>Compare sources:</strong> read Riot’s privacy notice, then check what independent outlets
+                    report.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Start here</h2>
+            <ul>
+                <li>Mozilla Foundation. (2023). <em>Privacy Not Included – Gaming</em>.
+                    https://foundation.mozilla.org/en/privacynotincluded/</li>
+                <li>Wikipedia. (2024). <em>Riot Vanguard</em>.
+                    https://en.wikipedia.org/wiki/Riot_Vanguard</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Official info</h2>
+            <ul>
+                <li>Riot Games. Vanguard and Anti-Cheat Notices. Check the latest on riotgames.com.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>News</h2>
+            <ul>
+                <li>IGN. (2024). <em>Riot assures players that new League of Legends anti-cheat software is not bricking
+                        PCs</em>.
+                    https://www.ign.com/articles/riot-assures-players-that-new-league-of-legends-anti-cheat-software-is-not-bricking-pcs
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Big picture reads</h2>
+            <ul>
+                <li>Lessig, L. (1998). <em>The Architecture of Privacy</em>. Harvard Law School.
+                    https://cyber.harvard.edu/works/lessig/architecture_priv.pdf</li>
+                <li>Dobber, T. (2023). <em>Microtargeting, Privacy, and the Need for Regulating Algorithms</em>.
+                    Routledge.</li>
+                <li>Bayer, J. (2020). Double harm to voters. <em>Internet Policy Review</em>, 9(1).
+                    https://doi.org/10.14763/2020.1.1460</li>
+                <li>Stardust, Z., Gillett, R., & Albury, K. (2023). Surveillance does not equal safety. <em>Crime,
+                        Media, Culture</em>, 19(2).</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="wrap" role="contentinfo">
+        <p class="muted">© 2025 Chris Daniells |
+            <a href="index.html#intro">Back to main page</a> |
+            <a href="about.html#license">Licence</a>
+        </p>
+    </footer>
+</body>
+
+</html>
